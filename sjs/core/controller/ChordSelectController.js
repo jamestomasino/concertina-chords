@@ -8,15 +8,15 @@
 
 
 	/**
-	 * Sample controller class
+	 * ChordSelect controller class
 	 * @param {Object} model [Reference to the data model]
 	 * @public
 	 */
-	var SampleController = function ( model ) {
+	var ChordSelectController = function ( model ) {
 		this.model = model;
 
 		// Event Subscriptions
-		Events.subscribe ( CONST.UI_EVENT_NAME_1, $.proxy(this._onSampleUIEvent, this) );
+		Events.subscribe ( CONST.UI_EVENT_NAME_1, $.proxy(this._onChordSelectUIEvent, this) );
 	};
 
 
@@ -25,7 +25,7 @@
 	//---------------------------------------------------------------
 
 
-	var p = SampleController.prototype;
+	var p = ChordSelectController.prototype;
 
 
 	//---------------------------------------------------------------
@@ -34,16 +34,16 @@
 
 
 	/**
-	 * Sample UI Event Handler
+	 * ChordSelect UI Event Handler
 	 * @param {Event} e [UI event]
 	 * @private
 	 */
-	p._onSampleUIEvent = function (e) {
-		console.log ( 'SampleController::onSampleUIEvent');
+	p._onChordSelectUIEvent = function (e) {
+		console.log ( 'ChordSelectController::onChordSelectUIEvent');
 		model.sampleMethod();
 	};
 
 
-	window.SampleController = SampleController;
+	window.ChordSelectController = ChordSelectController;
 
 }(window, jQuery, Events, CONST));

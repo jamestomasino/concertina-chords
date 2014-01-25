@@ -8,18 +8,18 @@
 
 
 	/**
-	 * Sample view class
+	 * ChordSelect view class
 	 * @param {jQuery DOM Object} ui
 	 * @public
 	 */
-	var SampleView = function ( ui ) {
+	var ChordSelectView = function ( ui ) {
 		this.ui = ui;
 
 		// UI Bindings
 		this.ui.on( CONST.UI_BIND_TYPE, '.btn', $.proxy(this._onUIClick, this));
 
 		// Event Subscriptions
-		Events.subscribe (CONST.DATA_EVENT_NAME_1, $.proxy(this._onSampleDataEvent, this));
+		Events.subscribe (CONST.DATA_EVENT_NAME_1, $.proxy(this._onChordSelectDataEvent, this));
 	};
 
 
@@ -28,7 +28,7 @@
 	//---------------------------------------------------------------
 
 
-	var p = SampleView.prototype;
+	var p = ChordSelectView.prototype;
 
 
 	//---------------------------------------------------------------
@@ -42,21 +42,21 @@
 	 * @private
 	 */
 	p.onUIClick = function (e) {
-		console.log ( 'SampleView::onSampleDataEvent -', data );
+		console.log ( 'ChordSelectView::onChordSelectDataEvent -', data );
 		Events.trigger ( CONST.UI_EVENT_NAME_1 );
 	};
 
 	/**
 	 * Handler when sample data event
-	 * @param {String} data [Sample data from model]
+	 * @param {String} data [ChordSelect data from model]
 	 * @private
 	 */
-	p.onSampleDataEvent = function ( data ) {
-		console.log ( 'SampleView::onSampleDataEvent -', data );
+	p.onChordSelectDataEvent = function ( data ) {
+		console.log ( 'ChordSelectView::onChordSelectDataEvent -', data );
 	};
 
 
-	window.SampleView = SampleView;
+	window.ChordSelectView = ChordSelectView;
 
 }(window, jQuery, Events, CONST));
 

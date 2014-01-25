@@ -1,3 +1,51 @@
 // Compass definitions
 @import "compass";
 @import "compass/reset";
+
+$circlesize: 40px;
+
+$opencolor: #CCC;
+$rootcolor: #E10000;
+$closedcolor: #E100EE;
+
+.wrapper {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.concertina {
+	display: block;
+	position: relative;
+
+	.buttons {
+		display: block;
+		position: relative;
+		height: 300px;
+		width: 800px;
+
+		.row_top, .row_mid, .row_bot {
+			clear: both;
+		}
+
+		li {
+			display: block;
+			float: left;
+			position: relative;
+			margin: 5px;
+			width: $circlesize;
+			height: $circlesize;
+			@include border-radius ($circlesize / 2);
+			background-color: $opencolor;
+			&.root {
+				background-color: $rootcolor;
+			}
+			&.closed {
+				background-color: $closedcolor;
+			}
+		}
+	}
+}
+
+.chord_select {
+
+}

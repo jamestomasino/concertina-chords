@@ -2,9 +2,10 @@
 //= require_tree ./view/
 //= require_tree ./controller/
 
-var model = new SampleModel();
-var controller = new SampleController ( model );
-var view = new SampleView ( $('#view_content') );
+var model = new Model();
+var chordSelectController = new ChordSelectController ( model );
+var chordSelectView = new ChordSelectView( $('#chord_select') );
+var concertinaView = new ConcertinaView ( $('#concertina') );
 
 $(function () {
 	model.applicationStart();
