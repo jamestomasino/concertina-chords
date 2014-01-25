@@ -9,6 +9,7 @@ Web app to quickly visualize chords for the left hand of my concertina.
 
 ####2014-01-25####
 
+ * __classes set up. basic calc of buttons working__ (`James Tomasino`)
  * __updating config scripts and readme with project name__ (`James Tomasino`)
  * __started from grunt-boilerplate__ (`James Tomasino`)
  * __Initial commit__ (`James Tomasino`)

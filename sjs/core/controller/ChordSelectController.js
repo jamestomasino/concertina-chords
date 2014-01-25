@@ -16,7 +16,9 @@
 		this.model = model;
 
 		// Event Subscriptions
-		Events.subscribe ( CONST.UI_EVENT_NAME_1, $.proxy(this._onChordSelectUIEvent, this) );
+		Events.subscribe ( CONST.UI_DIR_SELECT, $.proxy( this._onDirSelect, this ) );
+		Events.subscribe ( CONST.UI_CHORT_SELECT, $.proxy( this._onChordChange, this ) );
+
 	};
 
 
@@ -34,14 +36,23 @@
 
 
 	/**
-	 * ChordSelect UI Event Handler
+	 * Direction Selected
 	 * @param {Event} e [UI event]
 	 * @private
 	 */
-	p._onChordSelectUIEvent = function (e) {
-		console.log ( 'ChordSelectController::onChordSelectUIEvent');
-		model.sampleMethod();
+	p._onDirSelect = function (dir) {
+		model.setDirection ( dir );
 	};
+
+	/**
+	 * Chord Changed
+	 * @param {String} chord [new chord value]
+	 * @private
+	 */
+	p._onChordChange = function (chord) {
+		model.setChord (chord);
+	};
+
 
 
 	window.ChordSelectController = ChordSelectController;

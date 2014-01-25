@@ -14,7 +14,7 @@
 	 */
 	var ConcertinaView = function ( ui ) {
 		this.ui = ui;
-		this.notes = this.ui.find('.buttons').find('li');
+		this.notes = this.ui.find('li');
 
 		// Event Subscriptions
 		Events.subscribe (CONST.DATA_NOTES_SET, $.proxy(this._onNotesSet, this));
@@ -39,10 +39,10 @@
 	 * @param {Array} notes [array of notes to highlight]
 	 * @private
 	 */
-	p._onNotesSet = function ( keys ) {
+	p._onNotesSet = function ( chords ) {
 		this._resetNotes();
-		var i = keys.length; while (i--) {
-			switch (keys[i]) {
+		var i = chords.length; while (i--) {
+			switch (chords[i]) {
 				case 'root':
 					this.notes.eq(i).addClass('root');
 					break;

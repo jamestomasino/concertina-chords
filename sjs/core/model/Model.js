@@ -15,10 +15,10 @@
 		this._notes = [ "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" ];
 		this._majorInterval = [ 0, 4, 7 ];
 		this._minorInterval = [ 0, 3, 7 ];
-		this._keyRegExp = /([A-G](#)?)/;
+		this._chordRegExp = /^([A-G]#?)(m)?$/;
 
-		this._key = "C";
-		this._direction = CONST.DIR_PUSH;
+		this._chord = "C";
+		this._direction = CONST.DIR_DRAW;
 
 		// Configuration of the notes on my concertina
 		this._drawNotes = [ "F", "A#", "D#", "G", "A#", "G", "B",  "D",  "F", "A", "A", "F#", "A",  "C", "E" ];
@@ -41,7 +41,7 @@
 	p.applicationStart = function () {
 		Events.trigger (CONST.APPLICATION_READY);
 		Events.trigger (CONST.DATA_DIR_SET, this._direction);
-		Events.trigger (CONST.DATA_KEY_SET, this._key);
+		Events.trigger (CONST.DATA_CHORD_SET, this._chord);
 		this._calculateNotes();
 	};
 
@@ -71,6 +71,19 @@
 				Events.trigger ( CONST.DATA_DIR_SET, this._direction );
 				break;
 		}
+		this._calculateNotes();
+	};
+
+	/**
+	 * Set the chord
+	 * @param {String} chord [chord to display]
+	 * @public
+	 */
+	p.setChord = function ( chord ) {
+		if ( this._chordRegExp.test(chord) ) {
+			this._chord = chord;
+			this._calculateNotes();
+		}
 	};
 
 	//---------------------------------------------------------------
@@ -82,9 +95,9 @@
 	 * @private
 	 */
 	p._calculateNotes = function () {
-		var interval = (this._key.charAt(this._key.length - 1).toLowerCase() == 'm') ? this._minorInterval : this._majorInterval;
+		var interval = (this._chord.match(this._chordRegExp)[2] == 'm') ? this._minorInterval : this._majorInterval;
 		var notes = (this._direction == CONST.DIR_DRAW) ? this._drawNotes : this._pushNotes;
-		var root = this._key.match(this._keyRegExp)[1];
+		var root = this._chord.match(this._chordRegExp)[1];
 		var matches = [root];
 		if (root) {
 			var startIndex = this._notes.indexOf(root);
@@ -97,18 +110,18 @@
 					}
 					matches.push ( this._notes[sumIndex] );
 				}
-				var keys = [];
+				var chords = [];
 
 				for ( i = 0; i < notes.length; ++i ) {
 					if ( notes[i] === matches[0] ) {
-						keys.push ('root');
+						chords.push ('root');
 					} else if ( matches.indexOf(notes[i]) !== -1 ) {
-						keys.push ('closed');
+						chords.push ('closed');
 					} else {
-						keys.push ('open');
+						chords.push ('open');
 					}
 				}
-				Events.trigger (CONST.DATA_NOTES_SET, [keys]);
+				Events.trigger (CONST.DATA_NOTES_SET, [chords]);
 			}
 		}
 	};
