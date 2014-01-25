@@ -1,9 +1,9 @@
 {
-  "name": "boilerplate",
-  "description": "A boilerplate for starting projects with a grunt workflow",
+  "name": "concertina-chords",
+  "description": "A webapp for quickly visualizing left-hand chords on the concertina",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jamestomasino/grunt-boilerplate"
+    "url": "https://github.com/jamestomasino/concertina-chords"
   },
   "version": "0.1.0",
   "devDependencies": {
